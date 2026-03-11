@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Sampling MINYAKITA — SNI 19-0428-1998</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="badge">🛢️ MINYAKITA — SNI 19-0428-1998</div>
+    <h1>Kalkulator <em>Pemeriksaan Kemasan</em><br>MINYAKITA — Tumpukan</h1>
+    <p class="subtitle">
+      Panduan langkah demi langkah untuk menghitung jumlah karton dan kemasan primer
+      yang harus diambil saat pemeriksaan kemasan MINYAKITA di gudang/pabrik produsen.
+      Sesuai SNI 19-0428-1998 dan mekanisme UB Jastasma.
+    </p>
+  </header>
+
+  <!-- Progress Bar -->
+  <div class="wizard-progress">
+    <div class="step-item">
+      <div class="step-dot active" id="dot-1">1</div>
+      <div class="step-label active" id="lbl-1">Kondisi Produk</div>
+    </div>
+    <div class="step-connector" id="conn-1"></div>
+    <div class="step-item">
+      <div class="step-dot" id="dot-2">2</div>
+      <div class="step-label" id="lbl-2">Data Tumpukan</div>
+    </div>
+    <div class="step-connector" id="conn-2"></div>
+    <div class="step-item">
+      <div class="step-dot" id="dot-3">3</div>
+      <div class="step-label" id="lbl-3">Jenis Kemasan</div>
+    </div>
+    <div class="step-connector" id="conn-3"></div>
+    <div class="step-item">
+      <div class="step-dot" id="dot-4">4</div>
+      <div class="step-label" id="lbl-4">Hasil</div>
+    </div>
+  </div>
+
+  <!-- Wizard Content -->
+  <div id="wizard-content"></div>
+
+  <!-- Reference Tables -->
+  <section style="margin-top:36px">
+    <div class="ref-section-header"><span class="dot"></span>Tabel Referensi SNI 19-0428-1998</div>
+    <div class="ref-tabs">
+      <button class="rt-btn active" onclick="showRef(this,'rt-t2')">Tabel 2 — Karton/Lot</button>
+      <button class="rt-btn" onclick="showRef(this,'rt-t3')">Tabel 3 — Kemasan Primer</button>
+      <button class="rt-btn" onclick="showRef(this,'rt-param')">Parameter Kemasan</button>
+    </div>
+
+    <div id="rt-t2" class="rt-panel active">
+      <div class="card" style="padding:20px">
+        <div class="card-title">Tabel 2 — Jumlah Karton yang Diambil dari Lot/Tanding/Batch</div>
+        <table class="ref-table">
+          <thead>
+            <tr><th>Jumlah Karton dalam Lot</th><th>Jumlah Karton yang Diambil</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>s/d 10</td><td>Semua karton</td></tr>
+            <tr><td>11 – 25</td><td>5 karton</td></tr>
+            <tr><td>26 – 50</td><td>7 karton</td></tr>
+            <tr><td>51 – 100</td><td>10 karton</td></tr>
+            <tr class="hi"><td>&gt; 100</td><td>√n (akar pangkat dua, dibulatkan ke atas)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="rt-t3" class="rt-panel">
+      <div class="card" style="padding:20px">
+        <div class="card-title">Tabel 3 — Jumlah Kemasan Primer untuk Contoh</div>
+        <table class="ref-table">
+          <thead>
+            <tr><th>Total Kemasan Primer</th><th>Jumlah untuk Contoh</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>&lt; 10.000</td><td>200</td></tr>
+            <tr><td>10.000 – 15.000</td><td>200 – 225</td></tr>
+            <tr><td>15.001 – 20.000</td><td>225 – 250</td></tr>
+            <tr><td>20.001 – 40.000</td><td>250 – 300</td></tr>
+            <tr><td>40.001 – 60.000</td><td>300 – 350</td></tr>
+            <tr class="hi"><td>&gt; 60.000</td><td>400 (konservatif — range tidak didefinisikan SNI)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="rt-param" class="rt-panel">
+      <div class="card" style="padding:20px">
+        <div class="card-title">Parameter Pemeriksaan Kemasan MINYAKITA</div>
+        <table class="ref-table">
+          <thead>
+            <tr><th>Kemasan</th><th>Parameter</th><th>Standar</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="2" style="color:var(--text)">Sekunder</td><td>Kebersihan</td><td>Bebas dari tanda kebocoran</td></tr>
+            <tr><td>Jumlah isi</td><td>Sesuai</td></tr>
+            <tr><td rowspan="4" style="color:var(--text)">Primer</td><td>Kondisi kemasan</td><td>Baik / tidak bocor</td></tr>
+            <tr><td>Segel / sealer kemasan</td><td>Baik / tidak rusak</td></tr>
+            <tr><td>Label BPOM, SNI dan Halal</td><td>Ada dan jelas terbaca</td></tr>
+            <tr class="hi"><td>Expired date</td><td>Minimal 12 bulan dari tanggal pemeriksaan</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Referensi: SNI 19-0428-1998 — Petunjuk Pengambilan Contoh Padatan, BSN Jakarta 1998</div>
+    <div>Mekanisme: SDI UB Jastasma No. SDI-263/DB400/XI/11112025</div>
+    <div style="color:var(--orange)">Kalkulator Pemeriksaan Kemasan MINYAKITA — UB Jastasma Perum BULOG</div>
+  </footer>
+</div>
+
+<!-- PDF Template (hidden, rendered offscreen by html2canvas) -->
+<div id="pdf-template"></div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="calculator.js"></script>
+<script src="pdf-export.js"></script>
+</body>
+</html>
