@@ -8,19 +8,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
 <div class="container">
 
   <header>
+  <div class="hero-card">
+
+    <div class="logo-row">
+      <img src="logo.png" alt="Logo">
+      <div class="divider"></div>
+      <img src="jastasma.png" alt="Logo Bulog">
+    </div>
+
     <div class="badge">🛢️ MINYAKITA — SNI 19-0428-1998</div>
-    <h1>Kalkulator <em>Pemeriksaan Kemasan</em><br>MINYAKITA — Tumpukan</h1>
+
+    <h1>
+      Kalkulator <em>Pemeriksaan Kemasan</em><br>
+      MINYAKITA — Tumpukan
+    </h1>
+
     <p class="subtitle">
       Panduan langkah demi langkah untuk menghitung jumlah karton dan kemasan primer
       yang harus diambil saat pemeriksaan kemasan MINYAKITA di gudang/pabrik produsen.
       Sesuai SNI 19-0428-1998 dan mekanisme UB Jastasma.
     </p>
-  </header>
+
+  </div>
+</header>
 
   <!-- Progress Bar -->
   <div class="wizard-progress">
@@ -84,11 +100,10 @@
           </thead>
           <tbody>
             <tr><td>&lt; 10.000</td><td>200</td></tr>
-            <tr><td>10.000 – 15.000</td><td>200 – 225</td></tr>
-            <tr><td>15.001 – 20.000</td><td>225 – 250</td></tr>
-            <tr><td>20.001 – 40.000</td><td>250 – 300</td></tr>
-            <tr><td>40.001 – 60.000</td><td>300 – 350</td></tr>
-            <tr class="hi"><td>&gt; 60.000</td><td>400 (konservatif — range tidak didefinisikan SNI)</td></tr>
+            <tr><td>20.000 </td><td>250</td></tr>
+            <tr><td>40.000 </td><td>300</td></tr>
+            <tr><td>60.000 </td><td>350</td></tr>
+            <tr class="hi"><td>&gt; 100.000</td><td>400</td></tr>
           </tbody>
         </table>
       </div>
