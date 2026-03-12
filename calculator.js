@@ -46,22 +46,17 @@ function hitungKarton(n) {
 
 /**
  * Tabel 3 SNI 19-0428-1998 — jumlah kemasan primer untuk contoh.
- * Interpolasi linear digunakan untuk nilai di antara breakpoint tabel.
- * CATATAN: Range 60.001–100.000 tidak didefinisikan SNI → gunakan x = 400 (konservatif).
+ * Diperbarui: Interpolasi dihapus, menggunakan nilai tetap berdasarkan rentang atas.
  * @param {number} total - total kemasan primer dalam lot
  */
 function hitungT3(total) {
-  const interp = (a, b, xa, xb, v) => Math.round(xa + (v - a) / (b - a) * (xb - xa));
-  if (total <= 10000) return { x: 200, src: 'Total ≤ 10.000 — x = 200' };
-  if (total <= 15000) return { x: interp(10000, 15000, 200, 225, total), src: 'Interpolasi 10.000–15.000' };
-  if (total <= 20000) return { x: interp(15000, 20000, 225, 250, total), src: 'Interpolasi 15.000–20.000' };
-  if (total <= 30000) return { x: interp(20000, 30000, 250, 275, total), src: 'Interpolasi 20.000–30.000' };
-  if (total <= 35000) return { x: interp(30000, 35000, 275, 288, total), src: 'Interpolasi 30.000–35.000' };
-  if (total <= 40000) return { x: interp(35000, 40000, 288, 300, total), src: 'Interpolasi 35.000–40.000' };
-  if (total <= 50000) return { x: interp(40000, 50000, 300, 325, total), src: 'Interpolasi 40.000–50.000' };
-  if (total <= 60000) return { x: interp(50000, 60000, 325, 350, total), src: 'Interpolasi 50.000–60.000' };
-  // > 60.000: range tidak didefinisikan SNI — gunakan x = 400 (konservatif)
-  return { x: 400, src: 'Total > 60.000 — x = 400 (konservatif per SNI)' };
+  if (total <= 19999) return { x: 200, src: 'Tabel 3: lot ≤ 10.000 — x = 200' };
+  if (total <= 39999) return { x: 250, src: 'Tabel 3: lot 10.001–20.000 — x = 250' };
+  if (total <= 59999) return { x: 300, src: 'Tabel 3: lot 20.001–40.000 — x = 300' };
+  if (total <= 99999) return { x: 350, src: 'Tabel 3: lot 40.001–60.000 — x = 350' };
+  
+  // > 10.000: range tidak didefinisikan secara spesifik di SNI — gunakan x = 400 (konservatif)
+  return { x: 400, src: 'Total > 100.000 — x = 400 (konservatif per SNI)' };
 }
 
 /** Format angka ke locale id-ID */
